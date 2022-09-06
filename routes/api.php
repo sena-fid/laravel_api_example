@@ -37,14 +37,19 @@ Route::prefix('offer')->name('offer.')->group(function () {
     Route::get('/create/{id}', [OfferController::class, 'create'])->name('create');
     Route::post('/update/{offer}', [OfferController::class, 'update'])->name('update');
     Route::post('/teklif-arama-sonuclari', [OfferController::class, 'headerSearch'])->name('search');
-
     Route::get('/arama-sonuclari', [OfferController::class, 'seriNoSearch'])->name('seri_no.search');
     Route::get('/barcode-arama-sonuclari', [OfferController::class, 'barcodeNoSearch'])->name('barcode_no.search');
-
     Route::post('/addForm', [OfferController::class, 'addForm'])->name('addForm');
-
 });
 
+Route::prefix('brand')->name('brand.')->group(function () {
+    Route::get('/', [BrandController::class, 'index'])->name('index');
+    Route::get('/brandProducts/{brand}', [BrandController::class, 'brandProducts'])->name('brandProducts');
+    Route::post('/store', [BrandController::class, 'store'])->name('store');
+    Route::post('/update', [BrandController::class, 'update'])->name('update');
+    Route::get('/destroy/{brand}', [BrandController::class, 'destroy'])->name('destroy');
+    Route::get('/search-form', [BrandController::class, 'search_form'])->name('search_form');
+});
 
 //private route
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
